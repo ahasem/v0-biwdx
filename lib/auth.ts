@@ -63,7 +63,7 @@ export const auth = betterAuth({
   // Enable email and password authentication
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification: true,
+    // requireEmailVerification: true,
   },
 
   // Social providers
@@ -91,111 +91,111 @@ export const auth = betterAuth({
   // Plugins
   plugins: [
     // Email OTP for verification and passwordless login
-    emailOTP({
-      otpLength: 6,
-      expiresIn: 600, // 10 minutes
-      async sendVerificationOTP({ email, otp, type }) {
-        // ============================================================
-        // EMAIL INTEGRATION POINT
-        // 
-        // Replace the console.log below with your email service:
-        //
-        // Option 1: Nodemailer
-        // ---------------------------------------------------------
-        // import nodemailer from 'nodemailer';
-        // const transporter = nodemailer.createTransport({
-        //   host: process.env.SMTP_HOST,
-        //   port: parseInt(process.env.SMTP_PORT || '587'),
-        //   secure: false,
-        //   auth: {
-        //     user: process.env.SMTP_USER,
-        //     pass: process.env.SMTP_PASS,
-        //   },
-        // });
-        // await transporter.sendMail({
-        //   from: '"Hasem App" <noreply@yourdomain.com>',
-        //   to: email,
-        //   subject: `Your verification code: ${otp}`,
-        //   html: `
-        //     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        //       <h2>Your Verification Code</h2>
-        //       <p>Use the following code to ${type === 'sign-in' ? 'sign in' : type === 'email-verification' ? 'verify your email' : 'reset your password'}:</p>
-        //       <div style="background: #f4f4f4; padding: 20px; text-align: center; font-size: 32px; letter-spacing: 8px; font-weight: bold;">
-        //         ${otp}
-        //       </div>
-        //       <p style="color: #666; font-size: 14px; margin-top: 20px;">
-        //         This code will expire in 10 minutes.
-        //       </p>
-        //     </div>
-        //   `,
-        // });
-        //
-        // Option 2: SendGrid
-        // ---------------------------------------------------------
-        // import sgMail from '@sendgrid/mail';
-        // sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
-        // await sgMail.send({
-        //   to: email,
-        //   from: 'noreply@yourdomain.com',
-        //   subject: 'Your verification code',
-        //   text: `Your OTP is: ${otp}`,
-        //   html: `<p>Your OTP is: <strong>${otp}</strong></p>`,
-        // });
-        //
-        // Option 3: Resend
-        // ---------------------------------------------------------
-        // import { Resend } from 'resend';
-        // const resend = new Resend(process.env.RESEND_API_KEY);
-        // await resend.emails.send({
-        //   from: 'Hasem App <noreply@yourdomain.com>',
-        //   to: email,
-        //   subject: 'Your verification code',
-        //   html: `<p>Your OTP is: <strong>${otp}</strong></p>`,
-        // });
-        //
-        // Option 4: AWS SES
-        // ---------------------------------------------------------
-        // import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
-        // const ses = new SESClient({ region: process.env.AWS_REGION });
-        // await ses.send(new SendEmailCommand({
-        //   Source: 'noreply@yourdomain.com',
-        //   Destination: { ToAddresses: [email] },
-        //   Message: {
-        //     Subject: { Data: 'Your verification code' },
-        //     Body: { Text: { Data: `Your OTP is: ${otp}` } },
-        //   },
-        // }));
-        // ============================================================
+    //     emailOTP({
+    //       otpLength: 6,
+    //       expiresIn: 600, // 10 minutes
+    //       async sendVerificationOTP({ email, otp, type }) {
+    //         // ============================================================
+    //         // EMAIL INTEGRATION POINT
+    //         // 
+    //         // Replace the console.log below with your email service:
+    //         //
+    //         // Option 1: Nodemailer
+    //         // ---------------------------------------------------------
+    //         // import nodemailer from 'nodemailer';
+    //         // const transporter = nodemailer.createTransport({
+    //         //   host: process.env.SMTP_HOST,
+    //         //   port: parseInt(process.env.SMTP_PORT || '587'),
+    //         //   secure: false,
+    //         //   auth: {
+    //         //     user: process.env.SMTP_USER,
+    //         //     pass: process.env.SMTP_PASS,
+    //         //   },
+    //         // });
+    //         // await transporter.sendMail({
+    //         //   from: '"Hasem App" <noreply@yourdomain.com>',
+    //         //   to: email,
+    //         //   subject: `Your verification code: ${otp}`,
+    //         //   html: `
+    //         //     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+    //         //       <h2>Your Verification Code</h2>
+    //         //       <p>Use the following code to ${type === 'sign-in' ? 'sign in' : type === 'email-verification' ? 'verify your email' : 'reset your password'}:</p>
+    //         //       <div style="background: #f4f4f4; padding: 20px; text-align: center; font-size: 32px; letter-spacing: 8px; font-weight: bold;">
+    //         //         ${otp}
+    //         //       </div>
+    //         //       <p style="color: #666; font-size: 14px; margin-top: 20px;">
+    //         //         This code will expire in 10 minutes.
+    //         //       </p>
+    //         //     </div>
+    //         //   `,
+    //         // });
+    //         //
+    //         // Option 2: SendGrid
+    //         // ---------------------------------------------------------
+    //         // import sgMail from '@sendgrid/mail';
+    //         // sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+    //         // await sgMail.send({
+    //         //   to: email,
+    //         //   from: 'noreply@yourdomain.com',
+    //         //   subject: 'Your verification code',
+    //         //   text: `Your OTP is: ${otp}`,
+    //         //   html: `<p>Your OTP is: <strong>${otp}</strong></p>`,
+    //         // });
+    //         //
+    //         // Option 3: Resend
+    //         // ---------------------------------------------------------
+    //         // import { Resend } from 'resend';
+    //         // const resend = new Resend(process.env.RESEND_API_KEY);
+    //         // await resend.emails.send({
+    //         //   from: 'Hasem App <noreply@yourdomain.com>',
+    //         //   to: email,
+    //         //   subject: 'Your verification code',
+    //         //   html: `<p>Your OTP is: <strong>${otp}</strong></p>`,
+    //         // });
+    //         //
+    //         // Option 4: AWS SES
+    //         // ---------------------------------------------------------
+    //         // import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
+    //         // const ses = new SESClient({ region: process.env.AWS_REGION });
+    //         // await ses.send(new SendEmailCommand({
+    //         //   Source: 'noreply@yourdomain.com',
+    //         //   Destination: { ToAddresses: [email] },
+    //         //   Message: {
+    //         //     Subject: { Data: 'Your verification code' },
+    //         //     Body: { Text: { Data: `Your OTP is: ${otp}` } },
+    //         //   },
+    //         // }));
+    //         // ============================================================
 
-        const typeLabel = {
-          "sign-in": "SIGN IN",
-          "email-verification": "EMAIL VERIFICATION",
-          "forget-password": "PASSWORD RESET",
-        }[type] || type.toUpperCase();
+    //         const typeLabel = {
+    //           "sign-in": "SIGN IN",
+    //           "email-verification": "EMAIL VERIFICATION",
+    //           "forget-password": "PASSWORD RESET",
+    //         }[type] || type.toUpperCase();
 
-        console.log(`
-╔══════════════════════════════════════════════════════════════════╗
-║                      EMAIL OTP - ${typeLabel.padEnd(25)}║
-╠══════════════════════════════════════════════════════════════════╣
-║                                                                  ║
-║  To:        ${email.padEnd(52)}║
-║                                                                  ║
-║  ┌─────────────────────────────────────────────────────────┐     ║
-║  │                                                         │     ║
-║  │               OTP CODE: ${otp}                         │     ║
-║  │                                                         │     ║
-║  └─────────────────────────────────────────────────────────┘     ║
-║                                                                  ║
-║  Type:      ${type.padEnd(52)}║
-║  Expires:   10 minutes                                           ║
-║  Timestamp: ${new Date().toISOString().padEnd(52)}║
-║                                                                  ║
-║  [!] Replace this console.log with your email service above      ║
-║                                                                  ║
-╚══════════════════════════════════════════════════════════════════╝
-        `);
-      },
-    }),
+    //         console.log(`
+    // ╔══════════════════════════════════════════════════════════════════╗
+    // ║                      EMAIL OTP - ${typeLabel.padEnd(25)}║
+    // ╠══════════════════════════════════════════════════════════════════╣
+    // ║                                                                  ║
+    // ║  To:        ${email.padEnd(52)}║
+    // ║                                                                  ║
+    // ║  ┌─────────────────────────────────────────────────────────┐     ║
+    // ║  │                                                         │     ║
+    // ║  │               OTP CODE: ${otp}                         │     ║
+    // ║  │                                                         │     ║
+    // ║  └─────────────────────────────────────────────────────────┘     ║
+    // ║                                                                  ║
+    // ║  Type:      ${type.padEnd(52)}║
+    // ║  Expires:   10 minutes                                           ║
+    // ║  Timestamp: ${new Date().toISOString().padEnd(52)}║
+    // ║                                                                  ║
+    // ║  [!] Replace this console.log with your email service above      ║
+    // ║                                                                  ║
+    // ╚══════════════════════════════════════════════════════════════════╝
+    //         `);
+    //       },
+    //     }),
 
     // Two-factor authentication
     twoFactor({
