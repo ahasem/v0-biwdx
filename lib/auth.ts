@@ -46,25 +46,6 @@ export const auth = betterAuth({
     })(),
   },
 
-  // Additional trusted origins with wildcard support for CORS and CSRF protection
-  trustedOrigins: [
-    // Production origins
-    ...(process.env.BETTER_AUTH_URL
-      ? [
-          process.env.BETTER_AUTH_URL.startsWith("http")
-            ? process.env.BETTER_AUTH_URL
-            : `https://${process.env.BETTER_AUTH_URL}`,
-        ]
-      : []),
-    // Vercel preview deployments
-    "https://*.vercel.app",
-    // v0.dev preview environment - wildcard pattern for flexible matching
-    "https://*.vusercontent.net",
-    // Local development
-    "http://localhost:*",
-    "http://127.0.0.1:*",
-  ],
-  
   // User configuration with additional fields
   user: {
     additionalFields: {
